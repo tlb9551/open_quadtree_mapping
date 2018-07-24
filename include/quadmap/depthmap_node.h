@@ -21,6 +21,7 @@
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/PointCloud.h>
 #include <geometry_msgs/PoseStamped.h>
+#include <nav_msgs/Odometry.h>
 #include <ros/ros.h>
 
 namespace quadmap
@@ -33,7 +34,7 @@ public:
   bool init();
   void Msg_Callback(
     const sensor_msgs::ImageConstPtr &image_input,
-    const geometry_msgs::PoseStampedConstPtr &pose_input);
+    const nav_msgs::OdometryConstPtr &pose_input);
 private:
   void denoiseAndPublishResults();
   void publishConvergenceMap();

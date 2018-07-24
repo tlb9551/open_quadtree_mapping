@@ -104,7 +104,7 @@ int cam_width;
 
 void quadmap::DepthmapNode::Msg_Callback(
     const sensor_msgs::ImageConstPtr &image_input,
-    const geometry_msgs::PoseStampedConstPtr &pose_input)
+    const nav_msgs::OdometryConstPtr &pose_input)
 {
   printf("\n\n\n");
   num_msgs_ += 1;
@@ -126,13 +126,14 @@ void quadmap::DepthmapNode::Msg_Callback(
     ROS_ERROR("cv_bridge exception: %s", e.what());
   }
   quadmap::SE3<float> T_world_curr(
-        pose_input->pose.orientation.w,
-        pose_input->pose.orientation.x,
-        pose_input->pose.orientation.y,
-        pose_input->pose.orientation.z,
-        pose_input->pose.position.x,
-        pose_input->pose.position.y,
-        pose_input->pose.position.z);
+
+        pose_input->pose.pose.orientation.w,
+        pose_input->pose.pose.orientation.x,
+        pose_input->pose.pose.orientation.y,
+        pose_input->pose.pose.orientation.z,
+        pose_input->pose.pose.position.x,
+        pose_input->pose.pose.position.y,
+        pose_input->pose.pose.position.z);
 
   bool has_result;
   has_result = depthmap_->add_frames(img_8uC1, T_world_curr.inv());
