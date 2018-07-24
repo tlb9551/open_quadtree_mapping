@@ -8,8 +8,8 @@ find_package(CUDA REQUIRED)
 SET(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3 -use_fast_math)
 
 # Specify compute capability
-list(APPEND CUDA_NVCC_FLAGS -arch=sm_61)
-list(APPEND CUDA_NVCC_FLAGS -gencode arch=compute_61,code=sm_61)
+list(APPEND CUDA_NVCC_FLAGS -arch=sm_62)
+list(APPEND CUDA_NVCC_FLAGS -gencode arch=compute_62,code=sm_62)
 
 SET(CUDA_PROPAGATE_HOST_FLAGS OFF)
 
