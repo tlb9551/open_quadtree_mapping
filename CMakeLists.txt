@@ -8,14 +8,14 @@ find_package(CUDA REQUIRED)
 SET(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3 -use_fast_math)
 
 # Specify compute capability
-list(APPEND CUDA_NVCC_FLAGS -arch=sm_61)
-list(APPEND CUDA_NVCC_FLAGS -gencode arch=compute_61,code=sm_61)
+list(APPEND CUDA_NVCC_FLAGS -arch=sm_62)
+list(APPEND CUDA_NVCC_FLAGS -gencode arch=compute_62,code=sm_62)
 
 SET(CUDA_PROPAGATE_HOST_FLAGS OFF)
 
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-include(/home/wang/software/opencv/opencv-3.2.0.bin/OpenCVConfig.cmake)
+include(/home/nvidia/opencv3.2/share/OpenCV/OpenCVConfig.cmake)
 find_package(Eigen REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system filesystem)
 
@@ -55,3 +55,4 @@ cuda_add_executable(open_quadtree_mapping_node
     )
 target_link_libraries(open_quadtree_mapping_node
 ${catkin_LIBRARIES} ${OpenCV_LIBS} ${Boost_LIBRARIES})
+message(STATUS "  123123    ${OpenCV_INCLUDE_DIRS}")
