@@ -114,13 +114,13 @@ void quadmap::Publisher::publishDepthmap(ros::Time msg_time)
   cv::Mat depthmap_mat;
   cv::Mat reference_mat;
   cv_bridge::CvImage cv_image, cv_image_colored, cv_image_reference;
-  cv_image.header.frame_id = "depthmap";
+  cv_image.header.frame_id = "camera";
   cv_image.encoding = sensor_msgs::image_encodings::TYPE_32FC1;
   depthmap_mat = depthmap_->getDepthmap();
   reference_mat = depthmap_->getReferenceImage();
   cv_image.image = depthmap_mat;
 
-  cv_image_reference.header.frame_id = "reference_mat";
+  cv_image_reference.header.frame_id = "camera";
   cv_image_reference.encoding = sensor_msgs::image_encodings::MONO8;
   cv_image_reference.image = reference_mat;
 
@@ -142,7 +142,7 @@ void quadmap::Publisher::publishDepthmap(ros::Time msg_time)
   // cv::cvtColor(reference_mat, black_image, cv::COLOR_GRAY2BGR);
   // cv::addWeighted( black_image, 0.5, falseColorsMap, 0.5, 0.0, falseColorsMap);
   black_image.copyTo(falseColorsMap, mask);
-  cv_image_colored.header.frame_id = "depthmap";
+  cv_image_colored.header.frame_id = "camera";
   cv_image_colored.encoding = sensor_msgs::image_encodings::BGR8;
   cv_image_colored.image = falseColorsMap;
 
