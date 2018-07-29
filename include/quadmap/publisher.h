@@ -25,7 +25,7 @@
 #include <string>
 #include <sstream>
 #include <pcl_ros/point_cloud.h>
-
+#include <sensor_msgs/CameraInfo.h>
 namespace quadmap
 {
 
@@ -47,6 +47,7 @@ public:
 
   void publishDepthmapAndPointCloud(ros::Time msg_time);
 
+
 private:
   ros::NodeHandle &nh_;
   std::shared_ptr<quadmap::Depthmap> depthmap_;
@@ -61,8 +62,12 @@ private:
   ros::Publisher pub_depth;
   ros::Publisher pub_debug;
   ros::Publisher pub_reference;
+  ros::Publisher pub_color_camerainfo;
+  ros::Publisher pub_depth_camerainfo;
 
   cv::Mat colored_;
+  sensor_msgs::CameraInfo depth_camerainfo,color_camerainfo;
+
 };
 
 }

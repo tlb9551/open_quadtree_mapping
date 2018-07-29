@@ -35,7 +35,7 @@ quadmap::DepthmapNode::DepthmapNode(ros::NodeHandle &nh)
 
 bool quadmap::DepthmapNode::init()
 {
-int cam_width;
+  int cam_width;
   int cam_height;
   float cam_fx;
   float cam_fy;
@@ -52,7 +52,7 @@ int cam_width;
 
   nh_.getParam("downsample_factor", downsample_factor);
   nh_.getParam("semi2dense_ratio", semi2dense_ratio);
-cout<<"opencv_version"<<CV_VERSION<<endl;
+  cout<<"opencv_version"<<CV_VERSION<<endl;
   printf("read : width %d height %d\n", cam_width, cam_height);
 
   float k1, k2, r1, r2;
