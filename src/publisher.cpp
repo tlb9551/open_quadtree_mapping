@@ -30,10 +30,40 @@ quadmap::Publisher::Publisher(ros::NodeHandle &nh,
   : nh_(nh)
   , pc(new PointCloud)
 {
+  //camera info
+  int cam_width;
+  int cam_height;
+  float cam_fx;
+  float cam_fy;
+  float cam_cx;
+  float cam_cy;
+  double downsample_factor;
+  nh_.getParam("cam_width", cam_width);
+  nh_.getParam("cam_height", cam_height);
+  nh_.getParam("cam_fx", cam_fx);
+  nh_.getParam("cam_fy", cam_fy);
+  nh_.getParam("cam_cx", cam_cx);
+  nh_.getParam("cam_cy", cam_cy);
+  nh_.getParam("downsample_factor", downsample_factor);
+
+  depth_camerainfo.P[0] = cam_fx * downsample_factor;
+  depth_camerainfo.P[5] = cam_fy * downsample_factor;
+  depth_camerainfo.P[2] = cam_cx * downsample_factor;
+  depth_camerainfo.P[6] = cam_cy * downsample_factor;
+  depth_camerainfo.width = cam_width * downsample_factor;
+  depth_camerainfo.height = cam_height * downsample_factor;
+
+  color_camerainfo.P[0] = cam_fx;
+  color_camerainfo.P[5] = cam_fy;
+  color_camerainfo.P[2] = cam_cx;
+  color_camerainfo.P[6] = cam_cy;
+  color_camerainfo.width = cam_width;
+  color_camerainfo.height = cam_height;
+
   // for save image
   save_index = 0;
   std::cout << " initial the publisher ! " << std::endl;
-  save_path = std::string("/home/wang/Desktop/test/pure_sgm/");
+  save_path = std::string("/home/nvidia/Desktop/test/pure_sgm/");
 
   depthmap_ = depthmap;
   colored_.create(depthmap->getHeight(), depthmap_->getWidth(), CV_8UC3);
@@ -43,7 +73,10 @@ quadmap::Publisher::Publisher(ros::NodeHandle &nh,
   pub_color_depth = nh_.advertise<sensor_msgs::Image>("color_depth", 1);
   pub_depth       = nh_.advertise<sensor_msgs::Image>("depth", 1);
   pub_debug       = nh_.advertise<sensor_msgs::Image>("debug", 1);
-  pub_reference   = nh_.advertise<sensor_msgs::Image>("reference", 1);;
+  pub_reference   = nh_.advertise<sensor_msgs::Image>("reference", 1);
+  pub_color_camerainfo  =nh_.advertise<sensor_msgs::CameraInfo>("color_camerainfo",1);
+  pub_depth_camerainfo  =nh_.advertise<sensor_msgs::CameraInfo>("depth_camerainfo",1);
+
 }
 
 void quadmap::Publisher::publishDebugmap(ros::Time msg_time)
@@ -123,6 +156,10 @@ void quadmap::Publisher::publishDepthmap(ros::Time msg_time)
     cv_image_reference.header.stamp = msg_time;
     pub_reference.publish(cv_image_reference.toImageMsg());
     std::cout << "INFO: publishing depth map" << std::endl;
+
+    pub_color_camerainfo.publish(color_camerainfo);
+    pub_depth_camerainfo.publish(depth_camerainfo);
+
   }
 }
 
