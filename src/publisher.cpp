@@ -157,6 +157,9 @@ void quadmap::Publisher::publishDepthmap(ros::Time msg_time)
     pub_reference.publish(cv_image_reference.toImageMsg());
     std::cout << "INFO: publishing depth map" << std::endl;
 
+    color_camerainfo.header.stamp=msg_time;
+    depth_camerainfo.header.stamp=msg_time;
+
     pub_color_camerainfo.publish(color_camerainfo);
     pub_depth_camerainfo.publish(depth_camerainfo);
 
