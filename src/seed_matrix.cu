@@ -165,6 +165,7 @@ bool quadmap::SeedMatrix::add_frames(
     fuse_output_depth();
     download_output();
   }
+
   return has_depth_output;
 }
 

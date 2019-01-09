@@ -3,14 +3,14 @@
 
     <param name="cam_width" value="752" />
     <param name="cam_height" value="480" />
-    <param name="cam_fx" value="457.250446635753" />
-    <param name="cam_cx" value="365.130671373025" />
-    <param name="cam_fy" value="459.099508345733" />
-    <param name="cam_cy" value="234.421024297129" />
-    <param name="cam_k1" value="-0.394875400336141"/>
-    <param name="cam_k2" value="0.135130605469333"/>
-    <param name="cam_r1" value="-0.000924718223247582"/>
-    <param name="cam_r2" value="-0.000259803559870289"/>
+    <param name="cam_fx" value="344.388163567804" />
+    <param name="cam_fy" value="347.653814891569" />
+    <param name="cam_cx" value="369.013600815171" />
+    <param name="cam_cy" value="234.120769648197" />
+    <param name="cam_k1" value=" -0.226790966108293"/>
+    <param name="cam_k2" value=" 0.0327290400190462"/>
+    <param name="cam_r1" value=" 0.00165513317519321"/>
+    <param name="cam_r2" value=" -0.00154251928740331"/>
     <!--downsample factor: 0 ~ 1-->
     <param name="downsample_factor" value="0.5"/>
     <param name="semi2dense_ratio" value="5"/>

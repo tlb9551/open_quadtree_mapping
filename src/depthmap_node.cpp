@@ -106,6 +106,7 @@ void quadmap::DepthmapNode::Msg_Callback(
     const sensor_msgs::ImageConstPtr &image_input,
     const nav_msgs::OdometryConstPtr &pose_input)
 {
+
   printf("\n\n\n");
   num_msgs_ += 1;
   curret_msg_time = image_input->header.stamp;
