@@ -3,20 +3,20 @@
 
     <param name="cam_width" value="752" />
     <param name="cam_height" value="480" />
-    <param name="cam_fx" value="344.388163567804" />
-    <param name="cam_fy" value="347.653814891569" />
-    <param name="cam_cx" value="369.013600815171" />
-    <param name="cam_cy" value="234.120769648197" />
-    <param name="cam_k1" value=" -0.226790966108293"/>
-    <param name="cam_k2" value=" 0.0327290400190462"/>
-    <param name="cam_r1" value=" 0.00165513317519321"/>
-    <param name="cam_r2" value=" -0.00154251928740331"/>
+    <param name="cam_fx" value="327.38235739832396" />
+    <param name="cam_fy" value="328.53746876861663" />
+    <param name="cam_cx" value="377.71122904148228" />
+    <param name="cam_cy" value="218.78488378394886" />
+    <param name="cam_k1" value=" -0.27118124680891365"/>
+    <param name="cam_k2" value=" 0.057732212942268199"/>
+    <param name="cam_r1" value=" -0.00027044265276931112"/>
+    <param name="cam_r2" value="-0.00091854435084491376"/>
     <!--downsample factor: 0 ~ 1-->
     <param name="downsample_factor" value="0.5"/>
-    <param name="semi2dense_ratio" value="5"/>
+    <param name="semi2dense_ratio" value="2"/>
 
     <!-- if using synchronize image and pose-->r
-    <remap from="~image" to="/camera/left/image_raw" />
+    <remap from="~image" to="/camera/right/image_raw" />
     <remap from="~posestamped" to="/vins_estimator/camera_pose" />
 
 

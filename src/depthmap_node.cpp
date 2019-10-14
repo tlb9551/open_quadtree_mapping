@@ -106,10 +106,10 @@ void quadmap::DepthmapNode::Msg_Callback(
     const sensor_msgs::ImageConstPtr &image_input,
     const nav_msgs::OdometryConstPtr &pose_input)
 {
-
+  ros::Time t1 = ros::Time::now();
   printf("\n\n\n");
   num_msgs_ += 1;
-  curret_msg_time = image_input->header.stamp;
+  curret_msg_time = pose_input->header.stamp;
   if(!depthmap_)
   {
     ROS_ERROR("depthmap not initialized. Call the DepthmapNode::init() method");
@@ -138,8 +138,12 @@ void quadmap::DepthmapNode::Msg_Callback(
 
   bool has_result;
   has_result = depthmap_->add_frames(img_8uC1, T_world_curr.inv());
+  ros::Time t2 = ros::Time::now();
   if(has_result)
     denoiseAndPublishResults();
+  ros::Time t3 = ros::Time::now();
+  ROS_WARN("t1:%f",(t2-t1).toNSec()/1000000.0);
+  ROS_WARN("t2:%f",(t3-t2).toNSec()/1000000.0);
 }
 
 

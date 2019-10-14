@@ -239,6 +239,6 @@ void quadmap::Publisher::publishPointCloud(ros::Time msg_time)
 void quadmap::Publisher::publishDepthmapAndPointCloud(ros::Time msg_time)
 {
   publishDepthmap(msg_time);
-  publishDebugmap(msg_time);
+  //publishDebugmap(msg_time);
   ////publishPointCloud(msg_time);
 }
