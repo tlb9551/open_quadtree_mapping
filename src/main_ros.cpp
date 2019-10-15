@@ -41,9 +41,9 @@ int main(int argc, char **argv)
     return EXIT_FAILURE;
   }
 
-  message_filters::Subscriber<sensor_msgs::Image> image_sub(nh, "image", 1000);
-  message_filters::Subscriber<nav_msgs::Odometry> pose_sub(nh, "posestamped", 1000);
-  message_filters::Synchronizer<exact_policy> sync(exact_policy(1000), image_sub, pose_sub);
+  message_filters::Subscriber<sensor_msgs::Image> image_sub(nh, "image", 100);
+  message_filters::Subscriber<nav_msgs::Odometry> pose_sub(nh, "posestamped", 100);
+  message_filters::Synchronizer<exact_policy> sync(exact_policy(10), image_sub, pose_sub);
   sync.registerCallback(boost::bind(&quadmap::DepthmapNode::Msg_Callback, &dm_node, _1, _2));
 
   while(ros::ok())

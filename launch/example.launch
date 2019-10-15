@@ -16,7 +16,7 @@
     <param name="semi2dense_ratio" value="2"/>
 
     <!-- if using synchronize image and pose-->r
-    <remap from="~image" to="/camera/right/image_raw" />
+    <remap from="~image" to="/mtcamerdriver/image_raw" />
     <remap from="~posestamped" to="/vins_estimator/camera_pose" />
 
 
